@@ -6,7 +6,7 @@ CREATE DATABASE IF NOT EXISTS koperasi;
 
 USE koperasi;
 
--- =====================================
+-- ====================================
 -- MEMBUAT TABEL KATEGORI
 -- =====================================
 

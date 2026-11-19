@@ -36,6 +36,6 @@ if (mysqli_stmt_execute($stmt)) {
     header("Location: index.php?pesan=Data berhasil dihapus");
     exit();
 } else {
-    echo "Gagal menghapus data: " . mysqli_error($koneksi);
+    echo "Gagal menghapus data : " . mysqli_error($koneksi);
 }
 ?>

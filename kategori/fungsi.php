@@ -29,7 +29,7 @@ function upload_gambar_kategori($file, &$error)
     ];
 
     if (!$info || !isset($allowed[$mime])) {
-        $error = 'Format gambar harus JPG, PNG, atau WEBP.';
+        $error = 'Format gambar harus JPG, PNG, atau WEBP';
         return false;
     }
 

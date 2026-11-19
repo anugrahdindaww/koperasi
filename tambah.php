@@ -1,7 +1,7 @@
 <?php
 include "koneksi.php";
 
-// Ambil daftar kategori dari modul Kategori
+// Ambil daftar kategori dari modul kategori
 $kategori = mysqli_query($koneksi, "SELECT id, nama_kategori FROM kategori ORDER BY nama_kategori ASC");
 
 if (isset($_POST['simpan'])) {

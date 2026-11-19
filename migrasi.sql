@@ -33,7 +33,7 @@ SET p.kategori_id = k.id;
 -- 5. Cek dulu: query ini harus menghasilkan 0 baris
 --    SELECT * FROM produk WHERE kategori_id IS NULL;
 
--- 6. Kunci relasi, lalu buang kolom lama
+-- 6. Kunci relasi,lalu buang kolom lama
 ALTER TABLE produk MODIFY kategori_id INT NOT NULL;
 ALTER TABLE produk
     ADD CONSTRAINT fk_produk_kategori
