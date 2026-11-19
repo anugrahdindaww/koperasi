@@ -1,20 +1,25 @@
-<?php 
+<?php
 include "koneksi.php";
 
-if(isset($_POST['simpan'])) {
+// Ambil daftar kategori dari modul Kategori
+$kategori = mysqli_query($koneksi, "SELECT id, nama_kategori FROM kategori ORDER BY nama_kategori ASC");
+
+if (isset($_POST['simpan'])) {
     $kode_produk = $_POST['kode_produk'];
     $nama_produk = $_POST['nama_produk'];
-    $harga = $_POST['harga'];
-    $deskripsi = $_POST['deskripsi'];
+    $harga       = (int) $_POST['harga'];
+    $deskripsi   = $_POST['deskripsi'];
     $status_stok = $_POST['status_stok'];
-    $kategori = $_POST['kategori'];
+    $kategori_id = (int) $_POST['kategori_id'];
 
-    $sql = "INSERT INTO produk (kode_produk, nama_produk, harga, deskripsi, status_stok, kategori_produk) 
-            VALUES ('$kode_produk', '$nama_produk', '$harga', '$deskripsi', '$status_stok', '$kategori')";
-    $simpan = mysqli_query($koneksi, $sql);
+    $stmt = mysqli_prepare($koneksi,
+        "INSERT INTO produk (kode_produk, nama_produk, harga, deskripsi, status_stok, kategori_id)
+        VALUES (?, ?, ?, ?, ?, ?)");
+    mysqli_stmt_bind_param($stmt, "ssissi", $kode_produk, $nama_produk, $harga, $deskripsi, $status_stok, $kategori_id);
 
-    if($simpan) {
+    if (mysqli_stmt_execute($stmt)) {
         header("Location: index.php?pesan=Data berhasil disimpan");
+        exit();
     } else {
         echo "Error: " . mysqli_error($koneksi);
     }
@@ -39,24 +44,26 @@ if(isset($_POST['simpan'])) {
         <label for="harga">Harga:</label>
         <input type="number" name="harga" id="harga" required><br><br>
 
-        <label for="deskrepsi">Deskripsi:</label>
-        <textarea name="deskripsi" id="deskrepsi" required></textarea><br><br>
+        <label for="deskripsi">Deskripsi:</label>
+        <textarea name="deskripsi" id="deskripsi" required></textarea><br><br>
 
-        <label for="status_stok">Status Stok:</label>
-        <input type="radio" name="status_stok" id="status_stok" value="Tersedia" > Tersedia
-        <input type="radio" name="status_stok" id="status_stok" value="Habis" > Habis<br><br>
+        <label >Status Stok:</label>
+        <input type="radio" name="status_stok" id="stok_tersedia" value="Tersedia" required> <label for="stok_tersedia">Tersedia</label>
+        <input type="radio" name="status_stok" id="stok_habis" value="Habis"> <label for="stok_habis">Habis</label><br><br>
 
-        <label for="kategori">Kategori:</label>
-        <select name="kategori" id="kategori" required>
-            <option value="Seragam">Seragam</option>
-            <option value="Atribut">Atribut</option>
-            <option value="Makanan">Makanan</option>
-            <option value="Minuman">Minuman</option>
-            <option value="Alat_Tulis">Alat_Tulis</option>
-            <option value="Jasa_Cetak">Jasa_Cetak</option>
-        </select><br><br>
+        <label for="kategori_id">Kategori Produk:</label>
+        <select name="kategori_id" id="kategori_id" required>
+            <option value="">-- Pilih Kategori --</option>
+            <?php while ($k = mysqli_fetch_assoc($kategori)) { ?>
+                <option value="<?php echo $k['id']; ?>">
+                    <?php echo htmlspecialchars($k['nama_kategori']); ?>
+                </option>
+            <?php } ?>
+        </select>
+        <a href="kategori/tambah.php">+ Kategori baru</a><br><br>
 
         <input type="submit" name="simpan" value="Simpan">
+        <a href="index.php">Batal</a>
     </form>
 </body>
 </html>
