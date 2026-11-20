@@ -1,0 +1,99 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial;
+    background-color: #FFE0E6;
+    color: #51445f;
+    padding: 30px;
+}
+
+h2 {
+    color: #588157;
+    margin-bottom: 20px;
+}
+
+a {
+    color: #588157;
+    text-decoration: none;
+    margin-right: 5px;
+}
+
+a:hover {
+    color: #F4607B;
+}
+
+button {
+    background-color: #588157;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #594EAD;
+}
+
+form {
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+form label {
+    display: inline-block;
+    width: 135px;
+    margin-bottom: 15px;
+}
+
+input, textarea, select {
+    padding: 10px;
+    border: 1px solid #F99E85;
+    border-radius: 8px;
+    width: 375px;
+    max-width: 100%;
+}
+
+input[type="radio"],
+input[type="file"] {
+    width: auto;
+}
+
+textarea {
+    height: 65px;
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+th {
+    background-color: #E63946;
+    color: white;
+    padding: 12px;
+}
+
+td {
+    background-color: white;
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #F99E85;
+}
+
+tr:hover td {
+    background-color: #fff0e9;
+}
+
+img {
+    border-radius: 8px;
+}
+
